@@ -35,6 +35,7 @@ function UpdatePostForm({ post }) {
         router.push('/posts')
     }
 
+
     return (
         <>
             <form className='mb-5' onSubmit={submitHandler}>
