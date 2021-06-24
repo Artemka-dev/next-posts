@@ -59,3 +59,15 @@ PagePostDetail.getInitialProps = async ({ query, req }) => {
 
     return { serverPost }
 }
+
+// для исключительно серверных запросов
+// export async function getServerSideProps({ query, req }) {
+//     // if (!req) {
+//     //     return { props: { serverPost: null } }
+//     // }
+
+//     const serverPost = (await firebase.database().ref("posts/").child(query.id).once('value')).val()
+//     serverPost.id = query.id
+
+//     return { props: { serverPost } }
+// }

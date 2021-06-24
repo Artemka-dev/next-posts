@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import firebase from 'firebase/app'
 import 'firebase/database'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 function UpdatePostForm({ post }) {
 
@@ -12,6 +12,7 @@ function UpdatePostForm({ post }) {
     // create states
     const [title, setTitle] = useState(post.title)
     const [description, setDescription] = useState(post.description)
+
 
     function submitHandler(event) {
         event.preventDefault()
@@ -28,6 +29,7 @@ function UpdatePostForm({ post }) {
 
     const removePost = () => {
         firebase.database().ref("/posts").child(post.id).remove()
+        firebase.storage().ref("post_images/").child(post.imageName).delete()
 
         // push router to all posts
         router.push('/posts')
