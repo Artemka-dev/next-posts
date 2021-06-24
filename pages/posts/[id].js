@@ -19,7 +19,6 @@ function PagePostDetail({ serverPost }) {
     useEffect(() => {
         async function load() {
             const data = (await firebase.database().ref("posts/").child(router.query.id).once('value')).val()
-            
             setPost({...data, id: router.query.id})
         }
 
@@ -55,8 +54,8 @@ PagePostDetail.getInitialProps = async ({ query, req }) => {
     }
 
     const serverPost = (await firebase.database().ref("posts/").child(query.id).once('value')).val()
-    serverPost.id = query.id
 
+    serverPost.id = query.id
     return { serverPost }
 }
 
