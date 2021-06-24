@@ -47,7 +47,7 @@ function UpdatePostForm({ post }) {
                 </div>
 
                 <button type="submit" className="btn btn-warning">Изменить пост</button>&nbsp;
-                <button type="button" onClick={removePost} class="btn btn-danger">Удалить пост</button>
+                <button type="button" onClick={removePost} className="btn btn-danger">Удалить пост</button>
             </form>
         </>
     )

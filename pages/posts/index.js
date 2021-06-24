@@ -3,17 +3,31 @@ import MainLayout from '../../layout/MainLayout'
 import Form from '../../components/Form'
 import Post from '../../components/Post'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // import firebase
 import firebase from 'firebase'
 import "firebase/database"
-
-import slugify from 'react-slugify';
+import Loader from '../../components/Loader';
 
 function Posts({ posts }) {
 
   const [newPosts, setNewPosts] = useState(posts)
+
+  useEffect(() => {
+
+    async function load() {
+      const all_posts = (await firebase.database().ref("posts/").once('value')).val()
+      const data = Object.keys(all_posts || []).map(key => ({...all_posts[key], id: key}))
+
+      setNewPosts(data)
+    }
+
+    if (!posts) {
+      load()
+    }
+
+  }, [])
 
   const createPost = (data) => {
 
@@ -24,7 +38,6 @@ function Posts({ posts }) {
       date_pub: new Intl.DateTimeFormat("ru-RU", {day: "numeric", year: "numeric", month: "long"}).format()
     }
 
-    // get key for id in info data
     const key = firebase.database().ref("posts/").push(info).key
     info.id = key
 
@@ -39,9 +52,14 @@ function Posts({ posts }) {
         
         <h3>Посты</h3>
 
-        {newPosts.map((post, index) => {
-          return <Post post={post} key={index} />
-        })}
+        {!newPosts ? <Loader /> : 
+          <>
+            {newPosts.map((post, index) => {
+              return <Post post={post} key={index} />
+            })}
+          </>
+        }
+        
 
     </MainLayout>
   )
@@ -51,7 +69,12 @@ export default Posts;
 
 
 // get posts from database on server (query on server)
-Posts.getInitialProps = async (ctx) => {
+Posts.getInitialProps = async ({ req }) => {
+
+  if (!req) {
+    return { posts: null }
+  }
+
   const all_posts = (await firebase.database().ref("posts/").once('value')).val()
   const posts = Object.keys(all_posts || []).map(key => ({...all_posts[key], id: key}))
 

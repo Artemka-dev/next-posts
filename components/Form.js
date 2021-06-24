@@ -5,6 +5,7 @@ function Form({ createPost }) {
     // create states
     const [title, setTitle] = useState('')
     const [desc, setDesc] = useState('')
+    const [image, setImage] = useState(0)
 
     // create ref for first input
     const titleRef = useRef(null)
@@ -29,6 +30,11 @@ function Form({ createPost }) {
 
     return (
         <form className='mb-5' onSubmit={submitHandler}>
+            {/* <div className="mb-3">
+                <label htmlFor="formFile" className="form-label">Выберите файл...</label>
+                <input className="form-control" type="file" id="formFile" onChange={(event) => setImage(event.target.files[0] || null)} />
+            </div> */}
+
             <div className="mb-3">
                 <label htmlFor="post_title" className="form-label">Название поста</label>
                 <input type="text" className="form-control" placeholder="Название поста" id="post_title" aria-describedby="emailHelp" value={title} onChange={(event) => setTitle(event.target.value)} ref={titleRef} autoComplete='off' />
