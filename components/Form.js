@@ -31,9 +31,10 @@ function Form({ createPost }) {
         // clear state
         setTitle('')
         setDesc('')
-        setProgressValue('')
+        setProgressValue(0)
         setImageUrl('')
 
+        imageRef.current.value = ''
         titleRef.current.focus()
     }
 
@@ -77,24 +78,24 @@ function Form({ createPost }) {
             <div className="progress mb-2">
                 <div className="progress-bar" role="progressbar" style={{width: progressValue + "%"}} aria-valuenow={progressValue} aria-valuemin="0" aria-valuemax="100"></div>
             </div>
+
             <div className="mb-3">
                 <label htmlFor="formFile" className="form-label">Выберите файл...</label>
-                {/* <input className="form-control" type="file" id="formFile" onChange={(event) => setImage(event.target.files[0] || null)} /> */}
-                <input className="form-control" type="file" id="formFile" onChange={uploadFile} ref={imageRef} />
-
+                <input className="form-control" type="file" id="formFile" onChange={uploadFile} ref={imageRef} required />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="post_title" className="form-label">Название поста</label>
-                <input type="text" className="form-control" placeholder="Название поста" id="post_title" aria-describedby="emailHelp" value={title} onChange={(event) => setTitle(event.target.value)} ref={titleRef} autoComplete='off' />
+                <input type="text" className="form-control" placeholder="Название поста" id="post_title" aria-describedby="emailHelp" value={title} onChange={(event) => setTitle(event.target.value)} ref={titleRef} autoComplete='off' required />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="post_description" className="form-label">Название поста</label>
-                <textarea className="form-control" id="post_description" placeholder="Описание поста" value={desc} onChange={(event) => setDesc(event.target.value)}></textarea>
+                <textarea className="form-control" id="post_description" placeholder="Описание поста" value={desc} onChange={(event) => setDesc(event.target.value)} required rows='6'></textarea>
             </div>
 
             <button type="submit" className="btn btn-success">Создать пост</button>
+
         </form>
     )
 }

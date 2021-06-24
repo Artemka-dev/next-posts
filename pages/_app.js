@@ -3,8 +3,8 @@ import NextNprogress from 'nextjs-progressbar';
 
 import firebase from 'firebase/app'
 
-// Initialize Firebase
 
+// Initialize Firebase
 if (!firebase.apps.length) {
   firebase.initializeApp({
     apiKey: "AIzaSyBErQTW5Hfy4R0l7tGQnf2ogPI13_1IM0U",
@@ -19,7 +19,7 @@ if (!firebase.apps.length) {
 function MyApp({ Component, pageProps }) {
   return (
     <>
-    
+
       <NextNprogress
         color="#29D"
         startPosition={0.3}

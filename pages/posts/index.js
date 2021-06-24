@@ -56,7 +56,7 @@ function Posts({ posts }) {
 
       <div className='mb-5'>
         {!newPosts ? <Loader /> :
-          <div className="row row-cols-1 row-cols-md-2 g-4">
+          <div className="row row-cols-md-2 row-cols-lg-4 row-cols-sm-1 g-4">
             {newPosts.map((post, index) => {
               return <Post post={post} key={index} />
             })}

@@ -45,7 +45,7 @@ function UpdatePostForm({ post }) {
 
                 <div className="mb-3">
                     <label htmlFor="post_description" className="form-label">Название поста</label>
-                    <textarea className="form-control" id="post_description" placeholder="Описание поста" value={description} onChange={(event) => setDescription(event.target.value)}></textarea>
+                    <textarea className="form-control" id="post_description" placeholder="Описание поста" value={description} onChange={(event) => setDescription(event.target.value)} rows='6'></textarea>
                 </div>
 
                 <button type="submit" className="btn btn-warning">Изменить пост</button>&nbsp;

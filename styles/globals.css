@@ -14,12 +14,6 @@ a {
   box-sizing: border-box;
 }
 
-.container {
-  width: 1300px;
-  margin: 0 auto;
-  padding: 0px 15px;
-}
-
 nav {
   padding: 0px 20px;
 }
@@ -27,6 +21,7 @@ nav {
 form {
   margin-top: 4rem;
 }
+
 
 .lds-roller {
   display: inline-block;
